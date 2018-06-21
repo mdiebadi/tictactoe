@@ -53,8 +53,8 @@ interface ITile {
 }
 
 class Board extends React.Component<{}, IBoardState> {
-    constructor(props: {}) {
-        super(props);
+    constructor(props: {}, context: any) {
+        super(props, context);
         const turn = Math.floor(Math.random() * 2);
         this.state = {
             tiles: ['','','','','','','','',''],
@@ -105,8 +105,6 @@ class Board extends React.Component<{}, IBoardState> {
         for(let i = 0; i < winningCombinations.length; i++){
             if (
                 tiles[winningCombinations[i][0]] && 
-                tiles[winningCombinations[i][1]] && 
-                tiles[winningCombinations[i][2]] && 
                 tiles[winningCombinations[i][0]] === tiles[winningCombinations[i][1]] && 
                 tiles[winningCombinations[i][0]] === tiles[winningCombinations[i][2]]
             ){
