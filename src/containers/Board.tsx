@@ -93,7 +93,7 @@ class Board extends React.Component<{}, IBoardState> {
             message: undefined,
         }
         if(this.checkForWinner(newState.tiles)){
-            newState.message = `${this.state.turn? "X" : "O"} heeft gewonnen!`;
+            newState.winner = tile.value;
         }else if(!newState.tiles.includes('')){
             newState.message = "Geen winnaars, begin opnieuw!"
         }
