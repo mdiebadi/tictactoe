@@ -23,7 +23,7 @@ const StyledContainerHeader = styled.div`
     align-items: flex-end;
     padding: 20px;
     font-size: 25px;
-`;
+`
 
 const StyledSign = styled.div`
     flex-basis: 150px;
@@ -46,7 +46,6 @@ interface IBoardState {
     turn: boolean;
     winner: string;
     message: string;
-    hideSigns: boolean;
 }
 
 interface ITile {
@@ -62,7 +61,6 @@ class Board extends React.Component<{}, IBoardState> {
             turn: !!turn,
             winner: undefined,
             message: undefined,
-            hideSigns: false,
         }
     }
     render() {
@@ -72,13 +70,13 @@ class Board extends React.Component<{}, IBoardState> {
                     <Message winner={this.state.winner} message={this.state.message} turn={this.state.turn}/>
                 </StyledContainerHeader>
                 <StyledSign>
-                    {!this.state.hideSigns && <Sign value='O' canDrag={!this.state.turn} />}
+                    {!this.state.winner && !this.state.message && <Sign value='O' canDrag={!this.state.turn} />}
                 </StyledSign>
                 <StyledTiles>
                     {this.state.tiles.map((tileValue: string, i: number)=> <ITile key={i} index={i} value={tileValue} onDrop={(tile: ITile, index: number)=>this.handleDrop(tile, index)} /> )}
                 </StyledTiles>
                 <StyledSign>
-                    {!this.state.hideSigns && <Sign value='X' canDrag={this.state.turn} />}
+                    {!this.state.winner && !this.state.message && <Sign value='X' canDrag={this.state.turn} />}
                 </StyledSign>
                 <ResetButton reset={()=>this.handleReset()} value={this.state.message? "Nieuwe Ronde" : "Opnieuw beginnen"} />
             </StyledContainer>
@@ -93,14 +91,11 @@ class Board extends React.Component<{}, IBoardState> {
             turn: !this.state.turn,
             winner: undefined,
             message: undefined,
-            hideSigns: false,
         }
         if(this.checkForWinner(newState.tiles)){
             newState.message = `${this.state.turn? "X" : "O"} heeft gewonnen!`;
-            newState.hideSigns = true;
         }else if(!newState.tiles.includes('')){
             newState.message = "Geen winnaars, begin opnieuw!"
-            newState.hideSigns = true;
         }
         this.setState(newState);
 
@@ -126,7 +121,6 @@ class Board extends React.Component<{}, IBoardState> {
             turn: !turn,
             winner: undefined,
             message: undefined,
-            hideSigns: false,
         });
     }
 }
