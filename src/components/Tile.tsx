@@ -60,7 +60,8 @@ function collect(connect: any, monitor: any) {
     }
 }
 
-class Tile extends React.Component<ITileProps, {}> {
+@DropTarget('card', spec, collect)
+export default class Tile extends React.Component<ITileProps, {}> {
     render() {
         const {connectDropTarget, canDrop, isOver} = this.props;
          
@@ -73,5 +74,3 @@ class Tile extends React.Component<ITileProps, {}> {
         )
     }
 }
-
-export default DropTarget('card', spec, collect)(Tile);

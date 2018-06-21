@@ -2,7 +2,7 @@ import * as React from 'react';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Sign from '../components/Sign';
-import ITile from '../components/Tile';
+import Tile from '../components/Tile';
 import Message from '../components/Message';
 import ResetButton from '../components/ResetButton';
 import styled from 'styled-components';
@@ -73,7 +73,7 @@ class Board extends React.Component<{}, IBoardState> {
                     {!this.state.winner && !this.state.message && <Sign value='O' canDrag={!this.state.turn} />}
                 </StyledSign>
                 <StyledTiles>
-                    {this.state.tiles.map((tileValue: string, i: number)=> <ITile key={i} index={i} value={tileValue} onDrop={(tile: ITile, index: number)=>this.handleDrop(tile, index)} /> )}
+                    {this.state.tiles.map((tileValue: string, i: number)=> <Tile key={i} index={i} value={tileValue} onDrop={(tile: ITile, index: number)=>this.handleDrop(tile, index)} /> )}
                 </StyledTiles>
                 <StyledSign>
                     {!this.state.winner && !this.state.message && <Sign value='X' canDrag={this.state.turn} />}

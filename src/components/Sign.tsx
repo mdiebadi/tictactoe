@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {DragSource} from 'react-dnd';
+import {DragSource, DragSourceMonitor} from 'react-dnd';
 import styled from 'styled-components';
 
 const StyledSign = styled.div`
@@ -30,7 +30,8 @@ function collect(connect: any) {
     }
 }
 
-class Sign extends React.Component<ISignProps, {}> {
+@DragSource('card', spec, collect)
+export default class Sign extends React.Component<ISignProps, {}> {
     render() {
         const {connectDragSource} = this.props;
         return connectDragSource(
@@ -40,5 +41,3 @@ class Sign extends React.Component<ISignProps, {}> {
         );
     }
 }
-
-export default DragSource('card', spec, collect)(Sign) ;
