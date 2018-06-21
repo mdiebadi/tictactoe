@@ -55,10 +55,9 @@ interface ITile {
 class Board extends React.Component<{}, IBoardState> {
     constructor(props: {}, context: any) {
         super(props, context);
-        const turn = Math.floor(Math.random() * 2);
         this.state = {
             tiles: ['','','','','','','','',''],
-            turn: !!turn,
+            turn: !Math.floor(Math.random() * 2),
             winner: undefined,
             message: undefined,
         }
@@ -113,10 +112,9 @@ class Board extends React.Component<{}, IBoardState> {
         }
     }
     private handleReset() {
-        const turn = Math.floor(Math.random() * 2);
         this.setState({
             tiles: ['','','','','','','','',''],
-            turn: !turn,
+            turn: !Math.floor(Math.random() * 2),
             winner: undefined,
             message: undefined,
         });
